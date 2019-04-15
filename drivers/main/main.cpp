@@ -2,6 +2,7 @@
  * Simple driver that defines and produces the Sierpinksi Gasket. Saves the fractal data to disk
  */
 
+#include <cmath>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -22,6 +23,17 @@ std::tuple<double, double> f2(double x, double y)
 std::tuple<double, double> f3(double x, double y)
 {
    return {x/2.0, (y+1.0)/2.0};
+}
+
+std::tuple<double, double> f4(double x, double y)
+{
+   return {std::sin(x), std::sin(y)};
+}
+
+std::tuple<double, double> f5(double x, double y)
+{
+   auto sqrSum = x * x + y * y;
+   return {x/sqrSum, y/sqrSum};
 }
 
 int main()
@@ -46,7 +58,7 @@ int main()
 
    std::ofstream data("data.dat");
    data << std::fixed << std::setprecision(16);
-   auto points = flame();
+   auto points {flame()};
    for (const auto &p: points)
    {
        data << std::get<0>(p) << " " << std::get<1>(p) << " " << std::get<2>(p) << '\n';

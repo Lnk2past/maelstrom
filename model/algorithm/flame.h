@@ -24,21 +24,22 @@ public:
           biunit_dis(rng),
           biunit_dis(rng)
       };
-      fp x = std::get<0>(point);
-      fp y = std::get<1>(point);
-      fp c = biunit_dis(rng);
 
-      for (int i = 0; i < 20; ++i)
+      fp x {std::get<0>(point)};
+      fp y {std::get<1>(point)};
+      fp c {biunit_dis(rng)};
+
+      for (int i {0}; i < 20; ++i)
       {
-         int varidx = variation_index_dis(rng);
+         size_t varidx {variation_index_dis(rng)};
          c = (c + variations[varidx].get_color()) / 2.0;
          std::tie(x, y) = variations[varidx](x, y);
       }
 
       std::vector<std::tuple<fp, fp, fp>> points;
-      for (int i = 0; i < 9980; ++i)
+      for (int i {0}; i < 9980; ++i)
       {
-         int varidx = variation_index_dis(rng);
+         size_t varidx {variation_index_dis(rng)};
          std::tie(x, y) = variations[varidx](x, y);
          c = (c + variations[varidx].get_color()) / 2.0;
          points.push_back({x, y, c});

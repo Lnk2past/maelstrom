@@ -1,5 +1,5 @@
 # maelstrom
-a fractal flame implementation, as described at http://flam3.com/flame.pdf
+a fractal flame implementation, as described at https://flam3.com/flame_draves.pdf
 
 ### TODO
 - Add lots of variations
